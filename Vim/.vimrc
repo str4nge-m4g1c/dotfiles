@@ -9,25 +9,21 @@ call vundle#begin()
 "call vundle#begin('C:/Users/s72381/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/syntastic'
-" Plugin 'valloric/youcompleteme' " needs to be compiled
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'pangloss/vim-javascript'
-Plugin 'elzr/vim-json'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-notes'
-" Plugin 'mattn/emmet-vim'
-" Plugin 'easymotion/vim-easymotion'
-" Plugin 'majutsushi/tagbar'
-" Plugin 'tpope/vim-fugitive'
+Plugin 'VundleVim/Vundle.vim' 				" Package manager for VIM
+Plugin 'scrooloose/nerdtree'				" Tree explorer navigation (Shortcut: CRTL+n)
+Plugin 'Xuyuanp/nerdtree-git-plugin'			" Git integration for NERDTree
+Plugin 'christoomey/vim-tmux-navigator'			" Navigate between the VIM panels (CRTL+left/right/up/down arrow)
+Plugin 'kien/ctrlp.vim'					" Full path fuzzy file, buffer, mru, tag, ... finder for Vim
+Plugin 'tpope/vim-surround'				" Text surround
+Plugin 'terryma/vim-multiple-cursors'			" Sublime like multi cursor functions
+Plugin 'scrooloose/syntastic'				" Syntax highlighting
+Plugin 'tpope/vim-fugitive'				" Git wrapper for VIM
+Plugin 'tpope/vim-eunuch'				" Simple file commands
+Plugin 'bling/vim-airline'
+" Plugin 'valloric/youcompleteme' 			" Code completion for VIM --- needs to be compiled before it can work
+" Plugin 'mattn/emmet-vim'				" Code snippets for web development
+" Plugin 'easymotion/vim-easymotion'			" Easy movement in VIM
+" Plugin 'majutsushi/tagbar'				" Dont really know what this does			
 
 
 " All of your Plugins must be added before the following line
@@ -43,9 +39,13 @@ filetype plugin indent on    " required
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
-" Key Bindings 
-map <C-n> :NERDTreeToggle<CR>
+" NERDTree plugin configuration
+map <C-y> :NERDTreeToggle<CR>
+
+" TagBar plugin configuration
 " nmap <F8> :TagbarToggle<CR> " This is the mapping for the tagbar plugin
 
-" Notes plugin configuration
-:let g:notes_directories = ['/d/OneDrive - IAG/Notes/']
+" CtrlP plugin configuration
+let g:ctrlp_map = '<c-p>'   
+let g:ctrlp_cmd = 'CtrlP'
+
