@@ -3,10 +3,10 @@ set encoding=utf-8	      " change encoding, specifically for NERDTree
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=C:/Users/s72381/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('C:/Users/s72381/some/path/here')
+"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim' 				" Package manager for VIM
