@@ -23,7 +23,10 @@ Plugin 'bling/vim-airline'
 " Plugin 'valloric/youcompleteme' 			" Code completion for VIM --- needs to be compiled before it can work
 " Plugin 'mattn/emmet-vim'				" Code snippets for web development
 " Plugin 'easymotion/vim-easymotion'			" Easy movement in VIM
-" Plugin 'majutsushi/tagbar'				" Dont really know what this does			
+" Plugin 'majutsushi/tagbar'				" Dont really know what this does
+Plugin 'chase/vim-ansible-yaml'       " Additional support for Ansible in VIM
+" Plugin 'MicahElliott/Rocannon'      " Vim for Ansible playbooks: omni-completion, abbreviations, syntax, folding, K-docs, and colorscheme
+
 
 
 " All of your Plugins must be added before the following line
