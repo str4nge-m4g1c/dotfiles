@@ -1,0 +1,59 @@
+---
+- name: install necessary items
+  hosts: localhost
+  connection: local
+  user: firefly
+  become: true
+
+  tasks:
+
+    - name: Get aptitude for upgrade
+      apt: pkg=aptitude state=present
+
+    - name: Safe system upgrade via aptitude
+      apt: upgrade=safe
+
+    - name: install base packages
+      apt: pkg={{item}} state=present update_cache=yes cache_valid_time=604800
+      with_items:
+        - git
+        - vim
+        - chromium-browser
+        - python-dev
+        - sqlite
+        - postgresql
+        - python-scipy
+        - python3-pip
+        - parcellite
+        - nodejs
+        - npm
+        - apt-transport-https 
+        - ca-certificates 
+        - curl 
+        - software-properties-common
+
+    - name: Add Docker GPG key
+      apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+    
+    - name: Add Docker APT repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+    
+    - name: Install Docker
+      apt: name=docker-ce
+
+    - name: Ensure docker deamon is running
+      service:
+        name: docker
+        state: started
+      become: true
+
+    - name: Install global python requirements
+      pip: name={{item}} state=present executable=pip3
+      with_items:
+        - awscli
+        - aws-sam-cli
+        - pandas
+        - scipy
+        - django
+        - flask
