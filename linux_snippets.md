@@ -25,7 +25,7 @@
 	* edit the "AllowGroups" in the /etc/ssh/sshd_config file
 	* restart the service "service sshd restart"
 * Give folder permissions
-	* sudo chown -R glass_guide_user:glass_guide_user /iag/glass_data/
+	* sudo chown -R my_user:my_user /my_company/some_data/
 * Check password expiration
 	* chage -l USERNAME
 * To disable password aging / expiration for user foo, type command as follows and set:
@@ -49,8 +49,8 @@ Mystery commands:
 - df -BM d1
 
 
-Host * !*.iag.com.au !*.auiag.corp !10.*.*.*
-  229   ProxyCommand nc -X connect -x gopha.auiag.corp:8080 %h %p
+Host * !*.company.com.au !*.company.corp !10.*.*.*
+  229   ProxyCommand nc -X connect -x gopha.comapny.corp:8080 %h %p
   230   IdentityFile ~/.ssh/id_rsa
   231   ServerAliveInterval 60          
   232   ServerAliveCountMax 2
@@ -58,7 +58,7 @@ Host * !*.iag.com.au !*.auiag.corp !10.*.*.*
 ---
 
 
-mysql -h localhost -u cattle --password=cattle
+mysql -h localhost -u cattle --password=mypassword
 
 show global status like 'wsrep_cluster_status';
 
@@ -80,9 +80,9 @@ find /var/ -type f \( -not -path "*docker/*" \) -mtime -5 -print0 | du --files0-
 ---
 PACT Testing remove pact:
 
-curl -XDELETE http://pmc71tst309:5000/pacts/provider/UWRulesApi/consumer/ReactFrontEnd/3.0.344
+curl -XDELETE http://server:5000/pacts/provider/UWRulesApi/consumer/ReactFrontEnd/3.0.344
 .
-curl -X DELETE http://pmc71tst309:5000/pacticipants/UWRulesApi
+curl -X DELETE http://server:5000/pacticipants/UWRulesApi
 
 ---
 
@@ -94,18 +94,18 @@ taskkill /F /PID 12345
 
 ---
 Copy from the remote server
-scp -i ~/.ssh/cloud-user cloud-user@pmc71dev1897.auiag.corp:/iag/glass_data/*.zip .
+scp -i ~/.ssh/my-user my-user@server.company.corp:/company/my_data/*.zip .
 
 ---
 Copy ssh key from local to remote server
-ssh-copy-id -i .ssh/cloud-user cloud-user@pmc71dev2122.auiag.corp
+ssh-copy-id -i .ssh/my-user my-user@server.company.corp
 ---
 
 Delete files older than 7 days:
 find /folder/ -type f -name *.log -mtime +7 -print
 find /folder/ -type f -name *.log -mtime +7 -delete
 
-ansible -i inventory/ all -a "sudo find /iag/claims-policy-api/ -type f -name *.log -mtime +7
+ansible -i inventory/ all -a "sudo find /company/some-folder/ -type f -name *.log -mtime +7
 -print -delete" >> /vagrant/cleanup.log
 
 ---
