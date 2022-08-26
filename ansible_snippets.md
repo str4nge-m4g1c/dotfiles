@@ -1,3 +1,3 @@
-ansible -i inventory/preprod all -a "df" | grep 'SUCCESS\|/dev/mapper/datavg-lv_iag\|[7-9][0-9]%\|100%'
+ansible -i inventory/prod all -a "df" | grep 'SUCCESS\|/dev/mapper/datavg-lv_company\|[7-9][0-9]%\|100%'
 
-ansible-playbook -i 'cloud-user@pmc71dev2201.auiag.corp,' --key-file "~/.ssh/cloud-user" initial-box-setup.yml
+ansible-playbook -i 'some-user@somecompany.corp,' --key-file "~/.ssh/some-user" initial-box-setup.yml
