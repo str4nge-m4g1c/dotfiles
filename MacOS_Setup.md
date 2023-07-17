@@ -23,6 +23,7 @@ My MacOs setup and installs
   * Nitro PDF Pro
   * PDF Squeezer
 * Iterm ()
+* [The way](https://github.com/out-of-cheese-error/the-way) (code snippet) or [Pet](https://github.com/knqyf263/pet)
 * vs code
 * github Desktop
 * sublime
