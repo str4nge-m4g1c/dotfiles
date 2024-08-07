@@ -22,23 +22,43 @@ My MacOs setup and installs
   * Permute
   * Nitro PDF Pro
   * PDF Squeezer
-* Iterm ()
-* [The way](https://github.com/out-of-cheese-error/the-way) (code snippet) or [Pet](https://github.com/knqyf263/pet)
 * vs code
 * github Desktop
-* sublime
 * beyond compare
 * todoist
 * canva
-* dBeaver
-* Docker
+* Docker Desktop
 * Freemind
 * Magnet
-* OpenLens
-* Postman (Maybe, replaced by paw/rapidapi)
 * Powershell
 * Webcam settings (app to help with over exposure from background lighting)
 * wireshark
+
+Brew installs:
+* k9s
+* tree
+* ripgrep
+* git
+* aws-cli
+* k8s
+* fzf
+* cheat
+* jq
+* k6
+* kubectx
+* lazydocker
+* lazygit
+* luarocks
+* tmux
+* watch
+* yq
+* zoxide
+
+Python environment:
+* pyenv
+
+Golang environment:
+* go
 
 
 Online apps:
