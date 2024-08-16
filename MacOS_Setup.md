@@ -53,6 +53,9 @@ Brew installs:
 * watch
 * yq
 * zoxide
+* atac
+* neovim
+
 
 Python environment:
 * pyenv
