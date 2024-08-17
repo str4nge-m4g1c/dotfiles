@@ -1,5 +1,9 @@
 .git
 .gitignore
-scripts
+.stowrc
+.config/atuin
+.config/github-copilot
+scripts/
 DS_Store
 homebrew
+README.md
