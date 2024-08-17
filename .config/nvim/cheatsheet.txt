@@ -1,0 +1,41 @@
+# My Cheat Sheet
+## Comment @comment
+Comment / Uncomment | gcc
+## CodeMethodContext @code
+Show code method explanation | K
+## UpDownDropdown @updown
+Move up / down dropdown | ctrl + n / ctrl + p
+## Select @select
+Select text from dropdown | ctrl + y
+## MultiSelect @multiselect
+Select multiple words | ctrl + n
+## ExtendMultiSelect @multiselect
+Extend selection up / down | n / N
+## SkipMultiSelection @multiselect
+Skip selection | q
+## GetMultiSelectNextPrevious @multiselect
+Get next / previous selection | [ or ]
+## MultiSelectEnd @multiselect
+After select jump to end of line | Shift + a
+## MultiSelectVertical @multiselect
+Select a vertical slice after ctrl + n | ctrl + up/down
+## DeleteWordBackward @delete
+Delete current and left character | d<leftArrow>
+## DeleteWordBackward @delete
+Delete from current position to end of line | d$
+## DeleteWordBackward @delete
+Delete from current backward to first non-white-space character | d^
+## DeleteWordBackward @delete
+Delete from current backward to beginning of line | d0
+## DeleteWordBackward @delete
+Current to end of current word (including trailing space) | dw
+## DeleteWordBackward @delete
+Current to beginning of current word (including leading space) | db
+## DeleteWordAtCursor @delete
+Deletes the word at cursor (not including white space) | diw
+## DeleteWordAtCursor @delete
+Deletes the word at cursor (including white space) | daw
+## AmendEndOfLine @amend
+Amend to end of line | A
+## AmendStartOfLine @amend
+Amend to start of line | I

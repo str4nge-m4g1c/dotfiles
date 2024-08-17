@@ -227,3 +227,10 @@ sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 ```
 </details>
 
+## KeyBindings Issue fix
+
+For the vim-visual-multi plugin vertical slice mode with ctrl + up/down, you will need to edit the terminal keybindings to allow for these keybindings to work.
+- Control-Up:    \033[1;5A
+- Control-Down:  \033[1;5B
+- Control-Left:  \033[1;5D
+- Control-Right: \033[1;5C
