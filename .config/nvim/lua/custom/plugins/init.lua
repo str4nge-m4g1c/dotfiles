@@ -4,11 +4,11 @@
 -- See the kickstart.nvim README for more information
 --
 --
--- vim.opt.conceallevel = 1
--- vim.keymap.set('n', '<leader>oo', ':cd ~/Repositories/mysecondbrain<cr>')
--- vim.keymap.set('n', '<leader>on', ':ObsidianTemplate note<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>')
--- vim.keymap.set('n', '<leader>os', ':Telescope find_files search_dirs={"~/Repositories/mysecondbrain"}<cr>')
--- vim.keymap.set('n', '<leader>oz', ':Telescope live_grep search_dirs={"~/Repositories/mysecondbrain"}<cr>')
+vim.opt.conceallevel = 1
+vim.keymap.set('n', '<leader>oo', ':cd ~/Repositories/mysecondbrain<cr>')
+vim.keymap.set('n', '<leader>ot', ':ObsidianToday<cr>')
+vim.keymap.set('n', '<leader>os', ':Telescope find_files search_dirs={"~/Repositories/mysecondbrain"}<cr>')
+vim.keymap.set('n', '<leader>oz', ':Telescope live_grep search_dirs={"~/Repositories/mysecondbrain"}<cr>')
 --
 return {
   'github/copilot.vim', -- Install CoPilot that allows code suggestions/completions
@@ -57,28 +57,13 @@ return {
   },
   'mg979/vim-visual-multi', -- Install Visual Multi that allows multiple cursors
   'sudormrfbin/cheatsheet.nvim',
-  -- {
-  --   'epwalsh/obsidian.nvim',
-  --   version = '*', -- recommended, use latest release instead of latest commit
-  --   lazy = true,
-  --   ft = 'markdown',
-  --   dependencies = {
-  --     'nvim-lua/plenary.nvim',
-  --   },
-  --   opts = {
-  --     workspaces = {
-  --       {
-  --         name = 'mysecondbrain',
-  --         path = '~/Repositories/mysecondbrain',
-  --       },
-  --     },
-  --     notes_subdir = 'inbox',
-  --     new_notes_location = 'notes_subdir',
-  --     -- templates = {
-  --     -- subdir = 'templates',
-  --     -- date_format = '%Y-%m-%d',
-  --     -- time_format = '%H:%M:%S',
-  --     -- },
-  --   },
-  -- },
+  {
+    'epwalsh/obsidian.nvim',
+    version = '*', -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = 'markdown',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+  },
 }

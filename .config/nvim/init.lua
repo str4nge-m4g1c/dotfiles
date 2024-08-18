@@ -967,3 +967,42 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+require('obsidian').setup {
+  workspaces = {
+    {
+      name = 'mysecondbrain',
+      path = '~/Repositories/mysecondbrain',
+    },
+  },
+  notes_subdir = '~/Repositories/mysecondbrain/1_inbox',
+  new_notes_location = 'notes_subdir',
+
+  disable_frontmatter = true,
+  templates = {
+    subdir = '~/Repositories/mysecondbrain/9_templates',
+    date_format = '%Y-%m-%d',
+    time_format = '%H:%M:%S',
+  },
+
+  mappings = {
+    -- overrides the 'gf' mapping to work on markdown/wiki links within your vault
+    ['gf'] = {
+      action = function()
+        return require('obsidian').util.gf_passthrough()
+      end,
+      opts = { noremap = false, expr = true, buffer = true },
+    },
+    -- toggle check-boxes
+    -- ["<leader>ch"] = {
+    --   action = function()
+    --     return require("obsidian").util.toggle_checkbox()
+    --   end,
+    --   opts = { buffer = true },
+    -- },
+  },
+  completion = {
+    nvim_cmp = true,
+    min_chars = 2,
+  },
+}
