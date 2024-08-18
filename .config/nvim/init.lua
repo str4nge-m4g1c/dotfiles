@@ -975,12 +975,12 @@ require('obsidian').setup {
       path = '~/Repositories/mysecondbrain',
     },
   },
-  notes_subdir = '~/Repositories/mysecondbrain/1_inbox',
+  notes_subdir = '1_inbox',
   new_notes_location = 'notes_subdir',
 
   disable_frontmatter = true,
   templates = {
-    subdir = '~/Repositories/mysecondbrain/9_templates',
+    subdir = '9_templates',
     date_format = '%Y-%m-%d',
     time_format = '%H:%M:%S',
   },
