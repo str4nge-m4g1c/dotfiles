@@ -28,6 +28,10 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 ###  Environment variables
+if [[ -f ~/.zsh_env_vars ]]; then
+  source ~/.zsh_env_vars
+fi
+
 # export http_proxy=""
 # export https_proxy=""
 # export no_proxy=""
@@ -44,6 +48,7 @@ export EDITOR=nvim
 alias ls='eza -al --icons=always'
 alias lg='lazygit'
 alias ld='lazydocker'
+alias fe='yazi'
 alias v='nvim'
 
 ### zoxide setup
