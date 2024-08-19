@@ -387,6 +387,7 @@ require('lazy').setup({
               '--hidden',
               '--glob=!**/.git/*',
               '--glob=!**/.obsidian/*',
+              '--glob=!**/99_archive/*',
               '--glob=!**/.idea/*',
               '--glob=!**/.vscode/*',
               '--glob=!**/build/*',
