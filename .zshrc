@@ -11,10 +11,8 @@ if [ "$TERM_PROGRAM" != "vscode" ]; then
     tmux_start_or_attach
 fi
 
-### 
+### pyenv setup
 eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 ### ZSH config
 export ZSH="$HOME/.oh-my-zsh"
