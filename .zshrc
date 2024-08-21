@@ -60,6 +60,7 @@ alias lg='lazygit'
 alias ld='lazydocker'
 alias fe='yazi'
 alias v='nvim'
+alias fo='nvim $(fzf --preview "bat --color=always --style=header,grid --line-range :500 {}")'
 
 ### zoxide setup
 eval "$(zoxide init zsh)"
@@ -81,3 +82,5 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+export GPG_TTY=$(tty)
