@@ -102,10 +102,76 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 
 -- Line indents
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+-- vim.opt.tabstop = 4
+-- vim.opt.softtabstop = 2
+-- vim.opt.shiftwidth = 2
+-- vim.opt.expandtab = true
+
+-- Default formatting for all file types
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*',
+  callback = function()
+    vim.bo.fileencoding = 'utf-8'
+    vim.bo.shiftwidth = 2
+    vim.bo.expandtab = true
+    vim.bo.endofline = true
+--    vim.bo.trimtrailingwhitespace = true
+  end,
+})
+
+-- Overrides for javascript and json files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'javascript', 'json' },
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.expandtab = true
+  end,
+})
+
+-- Overrides for html,xml files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'html', 'xml' },
+  callback = function()
+    vim.bo.shiftwidth = 2
+  end,
+})
+
+-- Overrides for Markdown files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+--    vim.bo.trimtrailingwhitespace = false
+  end,
+})
+
+-- Overrides for Python files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'python',
+  callback = function()
+    vim.bo.expandtab = true
+    vim.bo.shiftwidth = 4
+  end,
+})
+
+-- Overrides for Makefile
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'make',
+  callback = function()
+    vim.bo.expandtab = false
+  end,
+})
+
+-- Catch-all to ignore certain directories
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = { 'node_modules/**', 'bower_components/**', 'dist/**' },
+  callback = function()
+    vim.bo.fileencoding = nil
+    vim.bo.shiftwidth = nil
+    vim.bo.expandtab = nil
+    vim.bo.endofline = nil
+--    vim.bo.trimtrailingwhitespace = nil
+  end,
+})
 
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
@@ -618,7 +684,11 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        gopls = {},
+        gopls = {
+          completeUnimported = true,
+          usePlaceholders = true,
+          analyses = { unusedparams = true },
+        },
         pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs

@@ -16,6 +16,11 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+### Github GPG setup
+if [ -r ~/.zshrc ]; then echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zshrc; \
+  else echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zprofile; fi
+
+
 ### ZSH config
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -76,3 +81,4 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
