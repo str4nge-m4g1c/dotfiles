@@ -101,18 +101,31 @@ return {
       end,
       ["templ"] = function()
         lspconfig["templ"].setup({
-            capabilities = capabilities
+          capabilities = capabilities,
         })
       end,
       ["gopls"] = function()
         lspconfig["gopls"].setup({
-            capabilities = capabilities
+          capabilities = capabilities,
+          cmd = { "gopls", "serve" },
+          filetypes = { "go", "gomod", "gotmpl", "gowork" },
+          root_dir = lspconfig.util.root_pattern("go.mod", "go.work", ".git"),
+          settings = {
+            gopls = {
+              completeUnimported = true,
+              usePlaceholders = true,
+              staticcheck = true,
+              analyses = {
+                unusedparams = true,
+              },
+            },
+          },
         })
       end,
       ["html"] = function()
         lspconfig["html"].setup({
-            capabilities = capabilities,
-            filetypes = {"html", "templ"}
+          capabilities = capabilities,
+          filetypes = { "html", "templ" },
         })
       end,
       ["lua_ls"] = function()
