@@ -16,6 +16,9 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+### Go setup
+export PATH=$PATH:$(go env GOPATH)/bin
+
 ### Github GPG setup
 # if [ -r ~/.zshrc ]; then echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zshrc; \
 #   else echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zprofile; fi
