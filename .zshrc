@@ -7,8 +7,10 @@ tmux_start_or_attach() {
     fi
 }
 
-if [ "$TERM_PROGRAM" != "vscode" ]; then
-    tmux_start_or_attach
+if [ -z "$NVIM" ]; then
+    if [ "$TERM_PROGRAM" != "vscode" ]; then
+        tmux_start_or_attach
+    fi
 fi
 
 ### pyenv setup
