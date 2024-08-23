@@ -12,6 +12,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         return vim.fn.executable("make") == 1
       end,
     },
+    { "nvim-telescope/telescope-file-browser.nvim", enabled = true },
     { "nvim-telescope/telescope-ui-select.nvim" },
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
@@ -71,12 +72,23 @@ return { -- Fuzzy Finder (files, lsp, etc)
         ["ui-select"] = {
           require("telescope.themes").get_dropdown(),
         },
+        file_browser = {
+          path = "%:p:h", -- open from within the folder of your current buffer
+          display_stat = false, -- don't show file stat
+          grouped = true, -- group initial sorting by directories and then files
+          hidden = true, -- show hidden files
+          hide_parent_dir = true, -- hide `../` in the file browser
+          hijack_netrw = true, -- use telescope file browser when opening directory paths
+          prompt_path = true, -- show the current relative path from cwd as the prompt prefix
+          use_fd = true, -- use `fd` instead of plenary, make sure to install `fd`
+        },
       },
     })
 
     -- Enable Telescope extensions if they are installed
     pcall(require("telescope").load_extension, "fzf")
     pcall(require("telescope").load_extension, "ui-select")
+    pcall(require("telescope").load_extension, "file_browser")
 
     -- See `:help telescope.builtin`
     local builtin = require("telescope.builtin")
@@ -90,6 +102,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
     vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+    vim.keymap.set("n", "<leader>s-", ":Telescope file_browser<CR>", { desc = "[S]earch File[-]Browser" })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set("n", "<leader>/", function()
