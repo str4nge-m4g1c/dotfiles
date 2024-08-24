@@ -29,7 +29,7 @@ return {
             pattern = { "go" },
             callback = function()
                 -- CTRL/control keymaps
-                vim.api.nvim_buf_set_keymap(0, "n", "<C-i>", ":GoImport<CR>", {})
+                vim.api.nvim_buf_set_keymap(0, "n", "<C-i>", ":GoImports<CR>", {})
                 vim.api.nvim_buf_set_keymap(0, "n", "<C-b>", ":GoBuild %:h<CR>", {})
                 vim.api.nvim_buf_set_keymap(0, "n", "<C-t>", ":GoTestPkg<CR>", {})
                 vim.api.nvim_buf_set_keymap(0, "n", "<C-c>", ":GoCoverage -p<CR>", {})
