@@ -7,3 +7,4 @@ scripts/
 DS_Store
 homebrew
 README.md
+.*\.(lock.json|lock.yaml)

@@ -3,3 +3,4 @@ homebrew/Brewfile.lock.json
 github-copilot/
 op/
 atuin/
+*.lock.json
