@@ -4,3 +4,4 @@ github-copilot/
 op/
 atuin/
 *.lock.json
+.config/nvim/lazy-lock.json
