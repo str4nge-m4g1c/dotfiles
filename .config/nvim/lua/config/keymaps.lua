@@ -50,3 +50,7 @@ vim.keymap.set("n", "<leader>oz", ':Telescope live_grep search_dirs={"~/Reposito
 
 -- Disable Ctrl+Z
 vim.api.nvim_set_keymap("n", "<C-z>", "<Nop>", { noremap = true, silent = true })
+
+-- Keymaps for hop
+vim.api.nvim_set_keymap("n", "<leader>hw", "<cmd>HopWord<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>ha", "<cmd>HopAnywhere<CR>", { noremap = true })
