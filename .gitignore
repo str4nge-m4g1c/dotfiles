@@ -5,3 +5,4 @@ op/
 atuin/
 *.lock.json
 .config/nvim/lazy-lock.json
+.config/exercism
