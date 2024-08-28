@@ -39,7 +39,7 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- golang code formatting
 -- vim.keymap.set("n", "<leader>ff", ":!gofmt -w %<CR><CR>")
-vim.keymap.set("n", "<leader>pp", ":!prettier -w %<CR><CR>") -- prettier formatter
+-- vim.keymap.set("n", "<leader>fp", ":!prettier -w %<CR><CR>") -- prettier formatter
 
 -- Obsidian keymaps for mysecondbrain
 vim.opt.conceallevel = 1
@@ -54,3 +54,6 @@ vim.api.nvim_set_keymap("n", "<C-z>", "<Nop>", { noremap = true, silent = true }
 -- Keymaps for hop
 vim.api.nvim_set_keymap("n", "<leader>hw", "<cmd>HopWord<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>ha", "<cmd>HopAnywhere<CR>", { noremap = true })
+
+-- Keymaps for Glow
+vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>Glow<CR>", { noremap = true })
