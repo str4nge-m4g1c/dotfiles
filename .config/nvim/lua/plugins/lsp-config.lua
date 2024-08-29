@@ -62,21 +62,21 @@ return {
                 )
                 keymap.set(
                     { "n", "v" },
-                    "<leader>ca",
+                    "<leader>ga",
                     vim.lsp.buf.code_action,
                     { desc = "See available code actions", buffer = ev.buf, silent = true }
                 )
-                -- keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
-                -- { desc = "Smart rename", buffer = ev.buf, silent = true })
+                keymap.set("n", "<leader>ln", vim.lsp.buf.rename,
+                    { desc = "Smart rename", buffer = ev.buf, silent = true })
                 keymap.set(
                     "n",
-                    "<leader>D",
+                    "<leader>lD",
                     "<cmd>Telescope diagnostics bufnr=0<CR>",
                     { desc = "Show buffer diagnostics", buffer = ev.buf, silent = true }
                 )
                 keymap.set(
                     "n",
-                    "<leader>d",
+                    "<leader>ld",
                     vim.diagnostic.open_float,
                     { desc = "Show line diagnostics", buffer = ev.buf, silent = true }
                 )
@@ -98,7 +98,7 @@ return {
                     vim.lsp.buf.hover,
                     { desc = "Show documentation for what is under cursor", buffer = ev.buf, silent = true }
                 )
-                keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP", buffer = ev.buf, silent = true })
+                keymap.set("n", "<leader>ls", ":LspRestart<CR>", { desc = "Restart LSP", buffer = ev.buf, silent = true })
             end,
         })
     end,
