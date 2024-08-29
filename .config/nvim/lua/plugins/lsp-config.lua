@@ -27,6 +27,37 @@ return {
       })
     end
 
+    -- Specific settings for gopls
+    nvim_lsp.gopls.setup({
+      capabilities = capabilities,
+      flags = {
+        debounce_text_changes = 150,
+      },
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      },
+    })
+
+    -- Specific settings for pyright
+    nvim_lsp.pyright.setup({
+      capabilities = capabilities,
+      flags = {
+        debounce_text_changes = 150,
+      },
+      settings = {
+        python = {
+          analysis = {
+            typeCheckingMode = "strict",
+          },
+        },
+      },
+    })
+
     -- Create autocmd for LspAttach to set keymaps
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -97,6 +128,35 @@ return {
           { desc = "Show documentation for what is under cursor", buffer = ev.buf, silent = true }
         )
         keymap.set("n", "<leader>ls", ":LspRestart<CR>", { desc = "Restart LSP", buffer = ev.buf, silent = true })
+
+        if vim.bo.filetype == "go" then
+          -- Additional keymap for organizing imports in Go
+          keymap.set(
+            "n",
+            "<C-i>",
+            "<cmd>lua vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })<CR>",
+            { desc = "Organize Imports", buffer = ev.buf, silent = true }
+          )
+          -- Keymaps for switching between Go source and test files
+          keymap.set(
+            "n",
+            "<leader>tt",
+            ":lua require('config.go_utils').switch_to_test()<CR>",
+            { desc = "Switch to test file", buffer = ev.buf, silent = true }
+          )
+          keymap.set(
+            "n",
+            "<leader>tv",
+            ":lua require('config.go_utils').switch_to_test_vsplit()<CR>",
+            { desc = "Switch to test file in vertical split", buffer = ev.buf, silent = true }
+          )
+          keymap.set(
+            "n",
+            "<leader>ts",
+            ":lua require('config.go_utils').switch_to_source()<CR>",
+            { desc = "Switch to source file", buffer = ev.buf, silent = true }
+          )
+        end
       end,
     })
   end,

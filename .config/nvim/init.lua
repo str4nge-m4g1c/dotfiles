@@ -36,4 +36,5 @@
 require("config.options")
 require("config.autocmds")
 require("config.keymaps")
+require("config.go_utils")
 require("config.lazy")
