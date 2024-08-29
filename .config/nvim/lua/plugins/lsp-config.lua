@@ -66,8 +66,8 @@ return {
                     vim.lsp.buf.code_action,
                     { desc = "See available code actions", buffer = ev.buf, silent = true }
                 )
-                keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
-                    { desc = "Smart rename", buffer = ev.buf, silent = true })
+                -- keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
+                -- { desc = "Smart rename", buffer = ev.buf, silent = true })
                 keymap.set(
                     "n",
                     "<leader>D",
