@@ -57,4 +57,3 @@ vim.api.nvim_set_keymap("n", "<C-z>", "<Nop>", { noremap = true, silent = true }
 -- Keymaps for hop
 vim.api.nvim_set_keymap("n", "<leader>hw", "<cmd>HopWord<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>ha", "<cmd>HopAnywhere<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>Glow<CR>", { noremap = true })
