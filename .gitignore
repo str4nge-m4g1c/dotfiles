@@ -6,3 +6,4 @@ atuin/
 *.lock.json
 .config/nvim/lazy-lock.json
 .config/exercism
+.config/gh
