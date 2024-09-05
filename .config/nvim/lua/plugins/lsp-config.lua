@@ -67,11 +67,17 @@ return {
         -- Set keybinds
         keymap.set(
           "n",
-          "gR",
+          "gr",
           "<cmd>Telescope lsp_references<CR>",
           { desc = "Show LSP references", buffer = ev.buf, silent = true }
         )
         keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration", buffer = ev.buf, silent = true })
+        keymap.set(
+          "n",
+          "gs",
+          "<cmd>Telescope lsp_document_symbols<CR>",
+          { desc = "Show LSP document symbols", buffer = ev.buf, silent = true }
+        )
         keymap.set(
           "n",
           "gd",
@@ -89,6 +95,18 @@ return {
           "gt",
           "<cmd>Telescope lsp_type_definitions<CR>",
           { desc = "Show LSP type definitions", buffer = ev.buf, silent = true }
+        )
+        keymap.set(
+          "n",
+          "<leader>li",
+          "<cmd>Telescope lsp_incoming_calls<CR>",
+          { desc = "Show LSP incoming calls", buffer = ev.buf, silent = true }
+        )
+        keymap.set(
+          "n",
+          "<leader>lo",
+          "<cmd>Telescope lsp_outgoing_calls<CR>",
+          { desc = "Show LSP outgoing calls", buffer = ev.buf, silent = true }
         )
         keymap.set(
           { "n", "v" },
