@@ -15,7 +15,7 @@ return {
     local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     -- List of LSP servers
-    local servers = { "gopls", "pyright", "tsserver" }
+    local servers = { "gopls", "pyright", "ts_ls" }
 
     -- Setup each LSP server
     for _, lsp in ipairs(servers) do

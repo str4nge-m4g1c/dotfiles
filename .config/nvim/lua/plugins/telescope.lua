@@ -88,6 +88,18 @@ return { -- Fuzzy Finder (files, lsp, etc)
             ["n"] = {
               ["<C-r>"] = require("telescope._extensions.file_browser.actions").rename,
             },
+            ["i"] = {
+              ["<C-d>"] = function(prompt_bufnr)
+                local fb_actions = require("telescope._extensions.file_browser.actions")
+                fb_actions.remove(prompt_bufnr)
+              end,
+            },
+            ["n"] = {
+              ["<C-d>"] = function(prompt_bufnr)
+                local fb_actions = require("telescope._extensions.file_browser.actions")
+                fb_actions.remove(prompt_bufnr)
+              end,
+            },
           },
         },
       },

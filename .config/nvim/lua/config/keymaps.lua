@@ -44,13 +44,6 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 -- vim.keymap.set("n", "<leader>ff", ":!gofmt -w %<CR><CR>")
 -- vim.keymap.set("n", "<leader>fp", ":!prettier -w %<CR><CR>") -- prettier formatter
 
--- Obsidian keymaps for mysecondbrain
-vim.opt.conceallevel = 1
-vim.keymap.set("n", "<leader>oo", ":cd ~/Repositories/mysecondbrain<cr>")
-vim.keymap.set("n", "<leader>ot", ":ObsidianToday<cr>")
-vim.keymap.set("n", "<leader>os", ':Telescope find_files search_dirs={"~/Repositories/mysecondbrain"}<cr>')
-vim.keymap.set("n", "<leader>oz", ':Telescope live_grep search_dirs={"~/Repositories/mysecondbrain"}<cr>')
-
 -- Disable Ctrl+Z
 vim.api.nvim_set_keymap("n", "<C-z>", "<Nop>", { noremap = true, silent = true })
 

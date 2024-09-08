@@ -14,9 +14,10 @@ return { -- Useful plugin to show you pending keybinds.
       { "<leader>h", group = "[h]op" },
       { "<leader>t", group = "[t]oggle" },
       { "<leader>v", group = "[v]irtualenv" },
-      { "<leader>o", group = "[o]bsidian" },
+      -- { "<leader>o", group = "[o]bsidian" },
       { "<leader>f", group = "[f]ormat" },
       { "<leader>l", group = "[l]sp" },
+      { "<leader>x", group = "Trouble" },
     })
   end,
 }
