@@ -4,6 +4,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-buffer", -- source for text in buffer
     "hrsh7th/cmp-path", -- source for file system paths
+    "hrsh7th/cmp-cmdline", -- source for command line
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
     "hrsh7th/cmp-nvim-lsp", -- cmp_nvim_lsp
@@ -37,7 +38,27 @@ return {
         },
       },
     })
-
+    -- `/` cmdline setup.
+    cmp.setup.cmdline("/", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = "buffer" },
+      },
+    })
+    -- `:` cmdline setup.
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        {
+          name = "cmdline",
+          option = {
+            ignore_cmds = { "Man", "!" },
+          },
+        },
+      }),
+    })
     cmp.setup({
       window = {
         completion = cmp.config.window.bordered(),
@@ -49,12 +70,13 @@ return {
         end,
       },
       mapping = {
-        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-        ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), -- previous suggestion
+        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), -- next suggestion
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+        -- ["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item
         ["<C-e>"] = cmp.mapping({
           i = cmp.mapping.abort(),
           c = cmp.mapping.close(),
@@ -91,20 +113,20 @@ return {
       }),
     })
 
-    -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline("/", {
-      sources = {
-        { name = "buffer" },
-      },
-    })
-
-    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline(":", {
-      sources = cmp.config.sources({
-        { name = "path" },
-      }, {
-        { name = "cmdline" },
-      }),
-    })
+    -- -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+    -- cmp.setup.cmdline("/", {
+    --   sources = {
+    --     { name = "buffer" },
+    --   },
+    -- })
+    --
+    -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+    -- cmp.setup.cmdline(":", {
+    --   sources = cmp.config.sources({
+    --     { name = "path" },
+    --   }, {
+    --     { name = "cmdline" },
+    --   }),
+    -- })
   end,
 }

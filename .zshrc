@@ -64,12 +64,13 @@ fi
 export EDITOR=nvim
 
 ### zsh aliases
-alias ls='eza -al --icons=always'
+alias ls='eza -al --icons=always --sort modified'
 alias lg='lazygit'
 alias ld='lazydocker'
 alias fe='yazi'
 alias v='nvim'
 alias fo='nvim $(fzf --preview "bat --color=always --style=header,grid --line-range :500 {}")'
+# alias fw='rg --files-with-matches --no-heading --line-number --color=always "" | fzf --preview "bat --color=always --style=header,grid --line-range :500 {1}" --bind "enter:execute(nvim {1} +{2})"'
 
 ### zoxide setup
 eval "$(zoxide init zsh)"

@@ -31,6 +31,9 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+-- Dismiss Noice Message
+vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -54,3 +57,29 @@ vim.api.nvim_set_keymap("n", "<leader>ha", "<cmd>HopAnywhere<CR>", { noremap = t
 -- Map keybindings for GitHub Copilot
 vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 vim.g.copilot_no_tab_map = true
+
+-- Set up normal mode keymaps for vim-visual-multi
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>ma",
+  "<Plug>(VM-Select-All)<Tab>",
+  { noremap = true, silent = true, desc = "Select All" }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>mo",
+  "<Plug>(VM-Toggle-Mappings)",
+  { noremap = true, silent = true, desc = "Toggle Mapping" }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>mp",
+  "<Plug>(VM-Add-Cursor-At-Pos)",
+  { noremap = true, silent = true, desc = "Add Cursor At Pos" }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>mr",
+  "<Plug>(VM-Start-Regex-Search)",
+  { noremap = true, silent = true, desc = "Start Regex Search" }
+)

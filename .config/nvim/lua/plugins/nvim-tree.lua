@@ -13,6 +13,6 @@ return {
       },
     })
 
-    vim.keymap.set("n", "\\", ":NvimTreeFindFileToggle<CR>")
+    vim.keymap.set("n", ";", ":NvimTreeFindFileToggle<CR>")
   end,
 }
