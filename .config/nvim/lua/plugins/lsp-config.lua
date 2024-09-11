@@ -53,6 +53,9 @@ return {
         python = {
           analysis = {
             typeCheckingMode = "strict",
+            diagnosticMode = "workspace",
+            autoImportCompletions = true,
+            useLibraryCodeForTypes = true,
           },
         },
       },

@@ -13,7 +13,6 @@ return { -- Useful plugin to show you pending keybinds.
       { "<leader>w", group = "[w]orkspace" },
       { "<leader>h", group = "[h]op" },
       { "<leader>t", group = "[t]oggle" },
-      { "<leader>p", group = "[p]ythonenv" },
       { "<leader>n", group = "[n]oice" },
       { "<leader>o", group = "[o]bsidian" },
       { "<leader>f", group = "[f]ormat" },
