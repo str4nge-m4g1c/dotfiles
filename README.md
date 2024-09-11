@@ -29,4 +29,4 @@
 - Start up tmux by running the command `tmux` in the terminal
 - Then run `ctrl + a followed by shift + i` to install the plugins
 
-Have fun! Or get to work! Whatever floats your boat.
+Have fun!

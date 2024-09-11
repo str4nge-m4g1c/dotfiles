@@ -46,6 +46,7 @@ return {
     -- Specific settings for pyright
     nvim_lsp.pyright.setup({
       capabilities = capabilities,
+      filetypes = { "python" },
       flags = {
         debounce_text_changes = 150,
       },
@@ -150,6 +151,7 @@ return {
         )
         keymap.set("n", "<leader>ls", ":LspRestart<CR>", { desc = "Restart LSP", buffer = ev.buf, silent = true })
 
+        -- Go specific keymaps
         if vim.bo.filetype == "go" then
           -- Additional keymap for organizing imports in Go
           keymap.set(
