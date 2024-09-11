@@ -81,26 +81,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
           hijack_netrw = true, -- use telescope file browser when opening directory paths
           prompt_path = true, -- show the current relative path from cwd as the prompt prefix
           use_fd = true, -- use `fd` instead of plenary, make sure to install `fd`
-          mappings = {
-            ["i"] = {
-              ["<C-r>"] = require("telescope._extensions.file_browser.actions").rename,
-            },
-            ["n"] = {
-              ["<C-r>"] = require("telescope._extensions.file_browser.actions").rename,
-            },
-            ["i"] = {
-              ["<C-d>"] = function(prompt_bufnr)
-                local fb_actions = require("telescope._extensions.file_browser.actions")
-                fb_actions.remove(prompt_bufnr)
-              end,
-            },
-            ["n"] = {
-              ["<C-d>"] = function(prompt_bufnr)
-                local fb_actions = require("telescope._extensions.file_browser.actions")
-                fb_actions.remove(prompt_bufnr)
-              end,
-            },
-          },
         },
       },
     })

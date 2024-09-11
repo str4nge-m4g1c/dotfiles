@@ -88,4 +88,4 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- Python neovim configuration
-vim.g.python3_host_prog = "/Users/s307646/.pyenv/versions/local/bin/python3"
+vim.g.python3_host_prog = "~/.pyenv/versions/local/bin/python3"
