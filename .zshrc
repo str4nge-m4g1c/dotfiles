@@ -1,3 +1,6 @@
+### Start prompt at the bottom of the terminal
+printf '\n%.0s' {1..$LINES}
+
 ### Tmux setup
 tmux_start_or_attach() {
     if tmux has-session -t main 2>/dev/null; then
@@ -69,6 +72,7 @@ alias fe='yazi'
 alias v='nvim'
 alias fo='nvim $(fzf --preview "bat --color=always --style=header,grid --line-range :500 {}")'
 # alias fw='rg --files-with-matches --no-heading --line-number --color=always "" | fzf --preview "bat --color=always --style=header,grid --line-range :500 {1}" --bind "enter:execute(nvim {1} +{2})"'
+alias clear="clear && printf '\n%.0s' {1..$LINES}"
 
 ### zoxide setup
 eval "$(zoxide init zsh)"
@@ -91,3 +95,7 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
+### nvm setup
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads NVM_DIR
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion

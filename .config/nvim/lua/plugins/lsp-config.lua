@@ -53,7 +53,7 @@ return {
       settings = {
         python = {
           analysis = {
-            typeCheckingMode = "strict",
+            typeCheckingMode = "basic",
             diagnosticMode = "workspace",
             autoImportCompletions = true,
             useLibraryCodeForTypes = true,
