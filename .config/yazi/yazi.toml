@@ -2,5 +2,5 @@
 show_hidden=true
 sort_by="created"
 sort_reverse=true
-
+linemode = "size_and_mtime"
 
