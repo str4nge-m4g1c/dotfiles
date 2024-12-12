@@ -5,7 +5,7 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = { enabled = false },
     indent = { enabled = true },
     input = { enabled = true },
     notifier = {
@@ -30,13 +30,13 @@ return {
       end,
       desc = "Toggle Zen Mode",
     },
-    {
-      "<leader>Z",
-      function()
-        Snacks.zen.zoom()
-      end,
-      desc = "Toggle Zoom",
-    },
+    -- {
+    --   "<leader>Z",
+    --   function()
+    --     Snacks.zen.zoom()
+    --   end,
+    --   desc = "Toggle Zoom",
+    -- },
     {
       "<leader>.",
       function()
@@ -121,13 +121,13 @@ return {
       end,
       desc = "Toggle Terminal",
     },
-    {
-      "<c-_>",
-      function()
-        Snacks.terminal()
-      end,
-      desc = "which_key_ignore",
-    },
+    -- {
+    --   "<c-_>",
+    --   function()
+    --     Snacks.terminal()
+    --   end,
+    --   desc = "which_key_ignore",
+    -- },
     {
       "]]",
       function()
