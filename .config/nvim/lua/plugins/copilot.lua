@@ -1,4 +1,3 @@
 return {
-  "github/copilot.vim", -- Install CoPilot that allows code suggestions/completions
+  -- "github/copilot.vim", -- Install CoPilot that allows code suggestions/completions
 }
-

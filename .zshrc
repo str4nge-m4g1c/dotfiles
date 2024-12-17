@@ -16,6 +16,11 @@ if [ -z "$NVIM" ]; then
     fi
 fi
 
+### maven setup
+export MAVEN_HOME="/usr/local/apache-maven"
+export PATH=$MAVEN_HOME/bin:$PATH
+
+
 ### pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -71,6 +76,7 @@ alias ld='lazydocker'
 alias fe='yazi'
 alias v='nvim'
 alias fo='nvim $(fzf --preview "bat --color=always --style=header,grid --line-range :500 {}")'
+alias fh='fzf_history'
 # alias fw='rg --files-with-matches --no-heading --line-number --color=always "" | fzf --preview "bat --color=always --style=header,grid --line-range :500 {1}" --bind "enter:execute(nvim {1} +{2})"'
 alias clear="clear && printf '\n%.0s' {1..$LINES}"
 
@@ -99,3 +105,15 @@ function yy() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads NVM_DIR
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+### fzf setup for history
+fzf_history() {
+  local selected_command=$(history | fzf --tac | awk '{$1=""; print $0}')
+  if [[ -n $selected_command ]]; then
+    print -z "$selected_command"
+  fi
+}
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
