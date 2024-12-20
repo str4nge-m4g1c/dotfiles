@@ -25,11 +25,3 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 
 -- Disable Ctrl+Z
 vim.api.nvim_set_keymap("n", "<C-z>", "<Nop>", { noremap = true, silent = true })
-
--- Keymaps for hop
-vim.api.nvim_set_keymap("n", "<leader>hw", "<cmd>HopWord<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>ha", "<cmd>HopAnywhere<CR>", { noremap = true })
-
--- Map keybindings for GitHub Copilot
-vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true, expr = true, noremap = true })
-vim.g.copilot_no_tab_map = true
