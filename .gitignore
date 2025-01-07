@@ -9,3 +9,4 @@ atuin/
 .config/gh
 .config/GitHub
 .config/jgit
+.vscode/settings.json

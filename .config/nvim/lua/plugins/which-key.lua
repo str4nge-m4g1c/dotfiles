@@ -12,7 +12,7 @@ return { -- Useful plugin to show you pending keybinds.
       { "<leader>h", group = "[h]op" },
       { "<leader>o", group = "[o]bsidian" },
       { "<leader>f", group = "[f]ormat" },
-      -- { "<leader>l", group = "[l]sp" },
+      { "<leader>l", group = "[l]sp" },
       { "<leader>x", group = "[x]trouble" },
     })
   end,
