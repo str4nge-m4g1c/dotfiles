@@ -1,40 +1,38 @@
---              o
---                   O       /`-.__
---                          /  \ '^|
---             o           T    l  *
---                        _|-..-|_
---                 O    (^ '----' `)
---                       `\-....-/^
---             O       o  ) "/ " (
---                       _( (-)  )_
---                   O  /\ )    (  /\
---                     /  \(    ) |  \
---                 o  o    \)  ( /    \
---                   /     |(  )|      \
---                  /    o \ \( /       \
---            __.--'   O    \_ /   .._   \
---           //|)\      ,   (_)   /(((\^)'\
---              |       | O         )  `  |
---              |      / o___      /      /
---             /  _.-''^^__O_^^''-._     /
---           .'  /  -''^^    ^^''-  \--'^
---         .'   .`.  `'''----'''^  .`. \
---       .'    /   `'--..____..--'^   \ \
---      /  _.-/                        \ \
---  .::'_/^   |                        |  `.
---         .-'|                        |    `-.
---   _.--'`   \                        /       `-.
---  /          \                      /           `-._
---  `'---..__   `.                  . _.._   __       \
---           ``'''`.              .'      `'^  `''---'^
---                  `-..______..-'
---
---                    str4nge-m4g1c
---
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
+vim.g.mapleader = " "
 
--- Load the configuration files
-require("config.options")
-require("config.autocmds")
-require("config.keymaps")
-require("config.go_utils")
-require("config.lazy")
+-- bootstrap lazy and all plugins
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
+if not vim.uv.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+local lazy_config = require "configs.lazy"
+
+-- load plugins
+require("lazy").setup({
+  {
+    "NvChad/NvChad",
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+  },
+
+  { import = "plugins" },
+}, lazy_config)
+
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+
+require "options"
+require "nvchad.autocmds"
+require "custom.autocmds"
+
+vim.schedule(function()
+  require "mappings"
+end)
