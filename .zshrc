@@ -22,18 +22,18 @@ export PATH=$MAVEN_HOME/bin:$PATH
 
 
 ### pyenv setup
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init --path)"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 ### Go setup
-export PATH=$PATH:$(go env GOPATH)/bin
+# export PATH=$PATH:$(go env GOPATH)/bin
 
 ### Github GPG setup
-# if [ -r ~/.zshrc ]; then echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zshrc; \
-#   else echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zprofile; fi
+if [ -r ~/.zshrc ]; then echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zshrc; \
+  else echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zprofile; fi
 export GPG_TTY=$(tty)
 
 ## #ZSH config
@@ -42,7 +42,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 plugins=(
-    1password
+    # 1password
     git
     docker
     extract
