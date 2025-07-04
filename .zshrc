@@ -32,8 +32,6 @@ export PATH=$MAVEN_HOME/bin:$PATH
 # export PATH=$PATH:$(go env GOPATH)/bin
 
 ### Github GPG setup
-if [ -r ~/.zshrc ]; then echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zshrc; \
-  else echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zprofile; fi
 export GPG_TTY=$(tty)
 
 ## #ZSH config
@@ -117,3 +115,4 @@ fzf_history() {
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
