@@ -1,4 +1,5 @@
 ### Start prompt at the bottom of the terminal
+export LINES=10000
 printf '\n%.0s' {1..$LINES}
 
 ### Tmux setup
@@ -77,6 +78,7 @@ alias fo='nvim $(fzf --preview "bat --color=always --style=header,grid --line-ra
 alias fh='fzf_history'
 # alias fw='rg --files-with-matches --no-heading --line-number --color=always "" | fzf --preview "bat --color=always --style=header,grid --line-range :500 {1}" --bind "enter:execute(nvim {1} +{2})"'
 alias clear="clear && printf '\n%.0s' {1..$LINES}"
+alias specify="uvx --from git+https://github.com/github/spec-kit.git specify"
 
 ### zoxide setup
 eval "$(zoxide init zsh)"
