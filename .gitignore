@@ -10,3 +10,5 @@ atuin/
 .config/GitHub
 .config/jgit
 .vscode/settings.json
+.config/fish/conf.d/uv.env.fish
+.config/uv/uv-receipt.json
