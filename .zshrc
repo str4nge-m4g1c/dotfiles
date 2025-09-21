@@ -2,7 +2,7 @@
 export LINES=10000
 printf '\n%.0s' {1..$LINES}
 
-### Tmux setup
+# TMUX Setup function
 tmux_start_or_attach() {
     if tmux has-session -t main 2>/dev/null; then
         tmux attach-session -t main
@@ -11,10 +11,16 @@ tmux_start_or_attach() {
     fi
 }
 
-if [ -z "$NVIM" ]; then
-    if [ "$TERM_PROGRAM" != "vscode" ]; then
-        tmux_start_or_attach
-    fi
+# Only auto-start tmux if:
+# - Not in Zed
+# - Not in VSCode
+# - Not in Neovim
+# - Not already in tmux
+# - In an interactive shell
+if command -v tmux >/dev/null 2>&1; then
+  if [[ -z "$TMUX" ]] && [[ -n "$PS1" ]] && [[ "$TERM_PROGRAM" != "zed" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$NVIM" ]]; then
+    tmux_start_or_attach
+  fi
 fi
 
 ### maven setup
