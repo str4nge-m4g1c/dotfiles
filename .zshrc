@@ -1,6 +1,5 @@
-### Start prompt at the bottom of the terminal
-export LINES=10000
-printf '\n%.0s' {1..$LINES}
+# Start prompt at the bottom of the terminal
+printf '\n%.0s' {1..1000000}
 
 # TMUX Setup function
 tmux_start_or_attach() {
@@ -21,6 +20,11 @@ if command -v tmux >/dev/null 2>&1; then
   if [[ -z "$TMUX" ]] && [[ -n "$PS1" ]] && [[ "$TERM_PROGRAM" != "zed" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$NVIM" ]]; then
     tmux_start_or_attach
   fi
+fi
+
+### Ghostty shell integration (needed inside tmux for notify-on-command-finish)
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+  source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
 fi
 
 ### maven setup
@@ -85,6 +89,36 @@ alias fh='fzf_history'
 # alias fw='rg --files-with-matches --no-heading --line-number --color=always "" | fzf --preview "bat --color=always --style=header,grid --line-range :500 {1}" --bind "enter:execute(nvim {1} +{2})"'
 alias clear="clear && printf '\n%.0s' {1..$LINES}"
 alias specify="uvx --from git+https://github.com/github/spec-kit.git specify"
+alias alert='osascript -e "display notification \"Last command finished (exit: $?)\" with title \"Terminal\" sound name \"Glass\""'
+alias serve='markserv'
+
+
+### Auto-notify for long-running commands (>10s)
+_notify_cmd_start=""
+_notify_cmd_name=""
+
+_notify_preexec() {
+  _notify_cmd_start=$EPOCHSECONDS
+  _notify_cmd_name="$1"
+}
+
+_notify_precmd() {
+  local exit_code=$?
+  if [[ -n "$_notify_cmd_start" ]]; then
+    local elapsed=$(( EPOCHSECONDS - _notify_cmd_start ))
+    if (( elapsed >= 10 )); then
+      local status_text="succeeded"
+      (( exit_code != 0 )) && status_text="failed (exit: $exit_code)"
+      osascript -e "display notification \"${_notify_cmd_name} ${status_text} after ${elapsed}s\" with title \"Terminal\" sound name \"Glass\"" &!
+    fi
+  fi
+  _notify_cmd_start=""
+  _notify_cmd_name=""
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec _notify_preexec
+add-zsh-hook precmd _notify_precmd
 
 ### zoxide setup
 eval "$(zoxide init zsh)"
@@ -121,6 +155,7 @@ fzf_history() {
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 

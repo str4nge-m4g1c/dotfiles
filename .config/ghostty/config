@@ -10,4 +10,8 @@ macos-option-as-alt = true
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
 
+bell-features = no-system,audio,attention,title,border
+bell-audio-path = /System/Library/Sounds/Glass.aiff
+bell-audio-volume = 1.0
+
 macos-titlebar-style=transparent
