@@ -9,9 +9,17 @@ export DOTFILES_PROFILE="personal"
 [[ -f ~/.config/dotfiles/profile ]] && source ~/.config/dotfiles/profile
 
 ### Terminal multiplexing ----------------------------------------------------
-# tmux has been retired. Ghostty native tabs/splits handle window management,
-# and herdr handles agent multiplexing (Claude Code / Copilot / Gemini / pi).
-# herdr is NOT auto-started; run `herdr` to start or attach the agent workspace.
+# tmux has been retired. herdr handles agent multiplexing (Claude Code /
+# Copilot / Gemini / pi) and, like a tmux auto-attach setup, we drop straight
+# into the persistent workspace on every new interactive shell.
+#
+# The background `herdr server` daemon holds the session (panes + agents keep
+# running when the window closes); this just reattaches a client to it.
+# HERDR_ENV is set inside herdr's own panes, so nested shells skip the attach
+# and get a plain prompt (no recursion). Ctrl-C at launch also drops to bare zsh.
+if [[ $- == *i* && -z $HERDR_ENV && -z $HERDR_SESSION ]]; then
+  herdr
+fi
 
 ### Ghostty shell integration (notify-on-command-finish)
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then

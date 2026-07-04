@@ -25,28 +25,40 @@ sessions, panes, tabs and workspaces, detaches/reattaches (including over SSH
 from a phone), but also shows each agent's live state — 🔴 blocked, 🟡 working,
 🔵 done, 🟢 idle — in a sidebar, and exposes a socket API that agents can drive.
 
-- Not auto-started (the old tmux auto-attach in `.zshrc` is gone). Run `herdr`
-  to start or attach the agent workspace.
+- Auto-attaches on every new interactive shell (the tmux `attach || new` habit,
+  ported): `.zshrc` runs `herdr` unless `HERDR_ENV`/`HERDR_SESSION` are set, so
+  panes *inside* herdr get a plain prompt and there's no recursion. Ctrl-C at
+  launch drops to a bare shell. The background `herdr server` daemon holds the
+  session, so closing the window leaves panes + agents running; the next shell
+  just reattaches.
 - Prefix is `ctrl+b`; mouse-native otherwise. Config: `.config/herdr/config.toml`.
 - Install per-agent integrations for native restore + semantic state:
   `herdr integration install pi|claude|copilot`.
 - herdr supports Claude Code, GitHub Copilot CLI, pi and (detected) Gemini CLI —
   i.e. every agent used across both laptops.
 
-### pi.dev as the unifying agent harness
-The efficiency win. Instead of maintaining three different agent CLIs with three
-config surfaces (Claude Code + Gemini at home, Copilot at work), **pi** gives one
-consistent TUI, keybindings, skills and prompt templates. pi's `pi-ai` layer
-speaks to 15+ providers behind one interface, so the *committed pi config is
-identical on both machines* — only the provider + key change, and those come
-from the machine-local secret layer, never from this repo.
+### Optional AI coding agents
+The native CLIs (Claude Code, Copilot CLI, Gemini CLI) are always available.
+On top of those, you can install one or both optional TUI agents — **pi** and/or
+**opencode** — to get a unified interface with shared keybindings and prompt
+templates. Both are opt-in; the dotfiles are usable without either.
+
+**pi (pi.dev)** — speaks to 15+ providers (Claude, Gemini, OpenAI, Copilot…)
+behind one interface, so the same committed config works on both machines. Only
+the provider + key differ, and those come from the machine-local secret layer.
+
+**opencode** — TUI coding agent with first-class support for Anthropic, OpenAI,
+and local models. A good choice if you prefer its UX or want a second agent for
+comparison.
+
+Both agents pick up API keys the same way:
 
 - Home: `ANTHROPIC_API_KEY` (Claude) + `GEMINI_API_KEY` (Gemini).
-- Work: point pi at the enterprise/OpenAI endpoint, or keep driving GitHub
-  Copilot CLI natively — herdr shows both the same way.
+- Work: enterprise/OpenAI endpoint, or GitHub Copilot CLI natively — herdr
+  surfaces all of them the same way.
 
-The native CLIs (Claude Code, Copilot CLI, Gemini CLI) stay available; pi is the
-common muscle-memory surface layered on top.
+See `homebrew/Brewfile` (optional section at the bottom) and the per-agent
+READMEs in `.config/pi/` and `.config/opencode/` for install instructions.
 
 ## Shared dotfiles without shared secrets
 
@@ -88,11 +100,11 @@ Templates: `.config/git/identity.local.example`, `identity.work.example`.
 - `.tmux.conf`, `.config/tmux/` and TPM (replaced by herdr).
 - `.config/kitty/` and `.wezterm.lua` (standardized on Ghostty).
 - Redundant oh-my-zsh `robbyrussell` theme (starship renders the prompt).
-- tmux auto-start block in `.zshrc`.
+- tmux auto-start block in `.zshrc` (replaced by the guarded herdr auto-attach).
 
 ## What was added
 - Machine profile + `~/.zsh_local` + `opsecret` layering in `.zshrc`.
-- `.config/herdr/`, `.config/pi/` config modules.
+- `.config/herdr/`, `.config/pi/`, `.config/opencode/` config modules (pi and opencode are optional).
 - `.config/git/config` with `includeIf` and identity templates.
 - `herdr` and `bun` in the Brewfile (bun runs pi); `tmux` removed.
 
@@ -103,7 +115,8 @@ Templates: `.config/git/identity.local.example`, `identity.work.example`.
 | `.config/ghostty/config` | yes | Terminal |
 | `.config/nvim/` | yes | Editor (LazyVim) |
 | `.config/herdr/config.toml` | yes | Agent multiplexer |
-| `.config/pi/` | yes | Unified agent harness config |
+| `.config/pi/` | yes | Optional: pi agent config |
+| `.config/opencode/` | yes | Optional: opencode agent config |
 | `.config/git/config` | yes | Shared git options (no identity) |
 | `.config/git/identity.local` | **no** | Default identity |
 | `.config/git/identity.work` | **no** | Work identity (`~/work/` only) |
