@@ -12,9 +12,31 @@
 # export DOCKER_DEFAULT_PLATFORM="linux/amd64"
 # export VAULT_ADDR="https://vault.corp"
 
-# --- API keys via 1Password (opsecret is defined in .zshrc) ------------------
-# Home laptop example:
-#   opsecret ANTHROPIC_API_KEY "op://Personal/anthropic/credential"
-#   opsecret GEMINI_API_KEY    "op://Personal/gemini/credential"
-# Work laptop example (Copilot uses its own auth; pi can target enterprise):
-#   opsecret OPENAI_API_KEY    "op://Work/openai/credential"
+# --- API keys via 1Password CLI -----------------------------------------------
+# `opsecret` is defined in .zshrc. It calls `op read` and exports the result.
+# Requires: op CLI installed + 1Password desktop app open (Touch ID unlock).
+# Enable biometric unlock: 1Password app → Settings → Developer →
+#   "Integrate with 1Password CLI"
+#
+# Path format:  op://VaultName/ItemTitle/FieldName
+#
+# Find your vaults:
+#   op vault list
+#
+# Find items in a vault:
+#   op item list --vault Private
+#
+# Find field names for a specific item:
+#   op item get "ItemTitle" --vault Private --format json \
+#     | jq -r '.fields[] | select(.value != null) | "\(.label): \(.id)"'
+#
+# Test a path before adding it here:
+#   op read "op://Private/OpenAI Key/password"
+#
+# Personal laptop examples (Private vault):
+#   opsecret ANTHROPIC_API_KEY "op://Private/Anthropic/credential"
+#   opsecret OPENAI_API_KEY    "op://Private/OpenAI Key/password"
+#   opsecret GEMINI_API_KEY    "op://Private/Gemini/credential"
+#
+# Work laptop examples (iag vault):
+#   opsecret OPENAI_API_KEY    "op://iag/OpenAI/credential"
