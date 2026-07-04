@@ -1,0 +1,8 @@
+# Copy to ~/.config/git/identity.local  — machine-local, NOT committed.
+# Default identity (personal / home repos).
+[user]
+	name = Michael Gilhooly
+	email = michael.gilhooly@gmail.com
+	# signingkey = <gpg-or-ssh-key-id>
+# [commit]
+#	gpgsign = true

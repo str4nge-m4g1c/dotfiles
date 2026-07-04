@@ -1,0 +1,8 @@
+# Copy to ~/.config/git/identity.work  — machine-local, NOT committed.
+# Applied ONLY to repos under ~/work/ (see includeIf in config).
+[user]
+	name = Michael Gilhooly
+	email = michael.gilhooly@your-company.com
+	# signingkey = <work-signing-key-id>
+# [commit]
+#	gpgsign = true

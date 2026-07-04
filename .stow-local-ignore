@@ -8,3 +8,5 @@ DS_Store
 homebrew
 README.md
 .*\.(lock.json|lock.yaml)
+DESIGN.md
+.*\.example
