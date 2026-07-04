@@ -1,0 +1,20 @@
+# ~/.zsh_local — per-machine shell config. Copy to ~/.zsh_local. NOT committed.
+# Holds anything that must differ between laptops or is sensitive.
+
+# --- WORK laptop: corporate proxy / TLS interception / platform pins ---------
+# export http_proxy="http://proxy.corp:8080"
+# export https_proxy="$http_proxy"
+# export no_proxy="localhost,127.0.0.1,.corp"
+# export REQUESTS_CA_BUNDLE="$HOME/.config/certs/corp-ca.pem"
+# export SSL_CERT_FILE="$REQUESTS_CA_BUNDLE"
+# export AWS_CA_BUNDLE="$REQUESTS_CA_BUNDLE"
+# export NODE_EXTRA_CA_CERTS="$REQUESTS_CA_BUNDLE"
+# export DOCKER_DEFAULT_PLATFORM="linux/amd64"
+# export VAULT_ADDR="https://vault.corp"
+
+# --- API keys via 1Password (opsecret is defined in .zshrc) ------------------
+# Home laptop example:
+#   opsecret ANTHROPIC_API_KEY "op://Personal/anthropic/credential"
+#   opsecret GEMINI_API_KEY    "op://Personal/gemini/credential"
+# Work laptop example (Copilot uses its own auth; pi can target enterprise):
+#   opsecret OPENAI_API_KEY    "op://Work/openai/credential"

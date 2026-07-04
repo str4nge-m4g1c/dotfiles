@@ -1,0 +1,10 @@
+# Machine profile — copy to ~/.config/dotfiles/profile on each laptop.
+# This file is machine-local and MUST NOT be committed.
+#
+# HOME laptop:  DOTFILES_PROFILE="personal"
+# WORK laptop:  DOTFILES_PROFILE="work"
+export DOTFILES_PROFILE="personal"
+
+# Optional per-machine feature flags read elsewhere in the shell config:
+# export DOTFILES_AI_AGENTS="claude gemini pi"   # home
+# export DOTFILES_AI_AGENTS="copilot pi"         # work

@@ -12,3 +12,9 @@ atuin/
 .vscode/settings.json
 .config/fish/conf.d/uv.env.fish
 .config/uv/uv-receipt.json
+
+# --- machine-local / secret layer (never commit; live in $HOME per laptop) ---
+.zsh_local
+.config/dotfiles/profile
+.config/git/identity.local
+.config/git/identity.work

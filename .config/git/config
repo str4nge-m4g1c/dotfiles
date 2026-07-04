@@ -1,0 +1,25 @@
+# Shared git config (committed). XDG path: ~/.config/git/config
+# Identity is intentionally NOT set here — it is machine/context-specific and
+# loaded from untracked files below so no work email or signing key is ever
+# committed or shared between laptops.
+
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+
+# Default identity for this machine (personal). Relative paths resolve against
+# ~/.config/git/. Copy identity.local.example -> ~/.config/git/identity.local
+[include]
+	path = identity.local
+
+# Work override: any repo under ~/work/ uses the work identity + signing key.
+# Only present on the work laptop. Copy identity.work.example -> identity.work
+[includeIf "gitdir:~/work/"]
+	path = identity.work

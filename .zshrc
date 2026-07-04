@@ -1,28 +1,19 @@
 # Start prompt at the bottom of the terminal
 printf '\n%.0s' {1..1000000}
 
-# TMUX Setup function
-tmux_start_or_attach() {
-    if tmux has-session -t main 2>/dev/null; then
-        tmux attach-session -t main
-    else
-        tmux new-session -s main
-    fi
-}
+### Machine profile (personal | work) ---------------------------------------
+# Decides which secrets and tools load. Defaults to "personal"; the work laptop
+# overrides this via ~/.config/dotfiles/profile (machine-local, not committed).
+# See .config/dotfiles/profile.example for the template.
+export DOTFILES_PROFILE="personal"
+[[ -f ~/.config/dotfiles/profile ]] && source ~/.config/dotfiles/profile
 
-# Only auto-start tmux if:
-# - Not in Zed
-# - Not in VSCode
-# - Not in Neovim
-# - Not already in tmux
-# - In an interactive shell
-if command -v tmux >/dev/null 2>&1; then
-  if [[ -z "$TMUX" ]] && [[ -n "$PS1" ]] && [[ "$TERM_PROGRAM" != "zed" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$NVIM" ]]; then
-    tmux_start_or_attach
-  fi
-fi
+### Terminal multiplexing ----------------------------------------------------
+# tmux has been retired. Ghostty native tabs/splits handle window management,
+# and herdr handles agent multiplexing (Claude Code / Copilot / Gemini / pi).
+# herdr is NOT auto-started; run `herdr` to start or attach the agent workspace.
 
-### Ghostty shell integration (needed inside tmux for notify-on-command-finish)
+### Ghostty shell integration (notify-on-command-finish)
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
 fi
@@ -48,7 +39,9 @@ export GPG_TTY=$(tty)
 ## #ZSH config
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+# Prompt is rendered by starship (see end of file), so leave the oh-my-zsh
+# theme empty to avoid two prompt engines fighting each other.
+ZSH_THEME=""
 
 plugins=(
     # 1password
@@ -61,21 +54,29 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-###  Environment variables
-if [[ -f ~/.zsh_env_vars ]]; then
-  source ~/.zsh_env_vars
-fi
+### Secrets & machine-local config (never committed) ------------------------
+# Layer 1: legacy env-var file, kept for back-compat.
+[[ -f ~/.zsh_env_vars ]] && source ~/.zsh_env_vars
 
-# export http_proxy=""
-# export https_proxy=""
-# export no_proxy=""
-# export REQUESTS_CA_BUNDLE=""
-# export SSL_CERT_FILE=""
-# export AWS_CA_BUNDLE=""
-# export NODE_EXTRA_CA_CERTS=""
-# export DOCKER_DEFAULT_PLATFORM="linux/amd64"
-# export NVM_DIR="$HOME/.nvm"
-# export VAULT_ADDR=
+# Layer 2: per-machine overrides. This is where the WORK laptop keeps its
+# proxy, CA bundle and platform exports (http_proxy, REQUESTS_CA_BUNDLE,
+# SSL_CERT_FILE, AWS_CA_BUNDLE, NODE_EXTRA_CA_CERTS, DOCKER_DEFAULT_PLATFORM,
+# VAULT_ADDR, ...). The home laptop simply won't have this file.
+# Template: .zsh_local.example
+[[ -f ~/.zsh_local ]] && source ~/.zsh_local
+
+# Layer 3: 1Password secret injection. Pull API keys at runtime instead of
+# writing them to disk. `op` is signed in to a different account per laptop, so
+# work secrets never reach home and vice versa.
+#   opsecret NAME "op://Vault/Item/field"  -> exports NAME from 1Password.
+opsecret() {
+  command -v op >/dev/null 2>&1 || return 0
+  export "$1"="$(op read "$2" 2>/dev/null)"
+}
+# Put the actual opsecret calls in ~/.zsh_local, e.g.:
+#   opsecret ANTHROPIC_API_KEY "op://Personal/anthropic/credential"
+#   opsecret GEMINI_API_KEY    "op://Personal/gemini/credential"
+
 export EDITOR=nvim
 
 ### zsh aliases

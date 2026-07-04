@@ -1,0 +1,24 @@
+# herdr configuration — the agent multiplexer replacing tmux.
+# https://herdr.dev/docs/configuration/
+#
+# herdr runs with zero config; keep this file minimal and only override what you
+# want. The prefix key is ctrl+b (press, release, then the action key).
+#
+# Common bindings (built in, listed for reference — press `ctrl+b ?` for all):
+#   ctrl+b then shift+n : new workspace
+#   ctrl+b then v / -   : split pane
+#   ctrl+b then c       : new tab
+#   ctrl+b then w       : switch workspace
+#   ctrl+b then q       : detach (agents keep running; run `herdr` to reattach)
+#
+# Uncomment / adjust once you confirm the exact keys in the docs above:
+# [keys]
+# prefix = "ctrl+b"
+#
+# [theme]
+# name = "catppuccin-mocha"   # match Ghostty
+#
+# NOTE: install per-agent integrations for native restore + semantic state:
+#   herdr integration install pi
+#   herdr integration install claude
+#   herdr integration install copilot
